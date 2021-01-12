@@ -1,0 +1,42 @@
+version: '3'
+services:
+  database:
+    image: postgres:13.0
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=chikito
+      - POSTGRES_USER=chikito
+      - POSTGRES_PASSWORD=chikito
+    healthcheck:
+      test: ['CMD-SHELL', 'bash -c "pg_isready -d docker"']
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    volumes:
+      - chikito_database:/var/lib/postgresql/data
+
+  app: &app
+    tty: true
+    user: root
+    build: .
+    image: chikito:latest
+    stdin_open: true
+    ports:
+      - 3000:3000
+    links:
+      - database
+    depends_on:
+      - database
+    volumes:
+      - .:/home/chikito
+    environment:
+      DB_HOST: database
+      DB_PASSWORD: chikito
+      DB_USERNAME: chikito
+      RAILS_ENV: development
+    command: bundle exec puma -C config/puma.rb
+
+volumes:
+  chikito_database:
+    external: true
