@@ -1,13 +1,10 @@
-# README
+# Chikito
+A simple URL shortener.
 
-### Run via Docker 
+## Run with Docker
 
-```
-> make setup
-```
+Open a terminal, navigate to the project folder and run:
 
-```
-> make start
-```
-
-Open `localhost:3000` in your prefered browser.
+1. `> make setup`
+2. `> make start`
+3. Open [localhost:3000](http://localhost:3000) in your prefered browser.
