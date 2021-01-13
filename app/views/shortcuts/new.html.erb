@@ -1,0 +1,13 @@
+<h1>Shortcuts</h1>
+<p>A simple URL shortener</p>
+<%= form_with model: @shortcut do |form| %>
+  <div>
+    <%= form.url_field :url, placeholder: 'Url' %><br/>
+    <% @shortcut.errors.full_messages_for(:url).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.submit "Shorten" %>
+  </div>
+<% end %>

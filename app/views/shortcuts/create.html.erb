@@ -1,0 +1,4 @@
+<p><b>Original: </b><%= @shortcut.url %></p>
+<p><b>Shortcut: </b><%= link_to shortcut_url(@shortcut.key), shortcut_path(@shortcut.key), target: :blank %></p>
+
+<%= link_to 'New Shortcut', :root %>

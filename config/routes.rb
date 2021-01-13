@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'shortcuts#new'
+
+  get '/:shortcut_key' => 'shortcuts#show', as: :shortcut, shortcut_key: /[[:alnum:]]{7}/
+
+  resources :shortcuts, only: %i(create)
 end
