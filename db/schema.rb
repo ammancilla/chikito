@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_081807) do
+ActiveRecord::Schema.define(version: 2021_01_13_204435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "shortcuts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "url", null: false
+    t.string "key", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["key"], name: "index_shortcuts_on_key", unique: true
+  end
 
 end
