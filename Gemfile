@@ -13,6 +13,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.1'
   gem 'faker', '~> 2.13'
   gem 'listen'
+  gem 'rails-controller-testing'
 end
 
 group :test do
