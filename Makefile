@@ -18,7 +18,7 @@ console:
 	docker-compose -p chikito exec app rails c || docker-compose -p chikito run --rm app rails c
 
 tests:
-	docker-compose -p chikito exec app rspec || docker-compose -p chikito run --rm app rspec
+	docker-compose -p chikito run --rm app bash -c "RAILS_ENV=test rspec"
 
 clean: stop
 	docker-compose -p chikito down
