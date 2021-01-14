@@ -6,7 +6,11 @@ class ShortcutsController < ApplicationController
   def create
     @shortcut = Shortcuts::Create.call(shortcut_params)
 
-    render :new unless @shortcut.persisted?
+    if @shortcut.persisted?
+      render status: :created
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
